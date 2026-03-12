@@ -455,7 +455,151 @@ footer {
     opacity: 0.5;
     font-size: 14px;
 }
+/* Portfólio */
+.portfolio {
+    padding: 100px 5%;
+}
 
+.grid-portfolio {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.portfolio-item {
+    background: var(--card-bg);
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid #222;
+    transition: 0.4s;
+}
+
+.video-container {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Formato padrão de vídeo */
+    background: #000;
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.portfolio-info {
+    padding: 20px;
+}
+
+.portfolio-info span {
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.portfolio-info h4 {
+    font-size: 1.2rem;
+    margin-top: 5px;
+}
+
+.portfolio-item:hover {
+    border-color: var(--accent);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 223, 216, 0.1);
+}
+/* Configuração do Carrossel de Portfólio */
+.carousel-portfolio {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 20px;
+    padding: 20px 5% 50px; /* Padding lateral para alinhar com o container */
+    scrollbar-width: none; /* Esconde barra no Firefox */
+    -ms-overflow-style: none; /* Esconde barra no IE/Edge */
+}
+
+.carousel-portfolio::-webkit-scrollbar {
+    display: none; /* Esconde barra no Chrome/Safari */
+}
+
+.portfolio-item {
+    min-width: 450px; /* Largura no Desktop */
+    scroll-snap-align: start;
+    background: var(--card-bg);
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid #222;
+    transition: 0.4s;
+    flex-shrink: 0;
+}
+
+.video-wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+}
+
+.video-wrapper iframe {
+    width: 100%;
+    height: 100%;
+}
+
+.portfolio-info {
+    padding: 25px;
+}
+
+.portfolio-info span {
+    color: var(--accent);
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.portfolio-info h4 {
+    font-size: 1.3rem;
+    margin-top: 8px;
+    font-weight: 700;
+}
+
+.portfolio-item:hover {
+    border-color: var(--accent);
+    transform: translateY(-5px);
+}
+
+/* Ajustes para Mobile */
+@media (max-width: 768px) {
+    .portfolio-item {
+        min-width: 85vw; /* Card ocupa quase a tela toda no celular */
+    }
+    
+    .portfolio-info h4 {
+        font-size: 1.1rem;
+    }
+}
+.portfolio-action {
+    padding: 0 5%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Efeito de brilho sutil no botão de portfólio para destacar */
+.portfolio-action .btn-main {
+    box-shadow: 0 0 20px rgba(0, 223, 216, 0.1);
+}
+
+.portfolio-action .btn-main:hover {
+    box-shadow: 0 0 35px rgba(0, 223, 216, 0.3);
+    transform: scale(1.05);
+}
+/* Ajuste mobile para vídeos verticais (Reels) se preferir */
+@media (max-width: 768px) {
+    .grid-portfolio {
+        grid-template-columns: 1fr;
+    }
+}
 /* =========================================
    RESPONSIVIDADE (MOBILE & TABLET)
    ========================================= */
