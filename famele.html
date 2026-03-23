@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="imagens/favicoin.PNG">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+    <link rel="manifest" href="site.webmanifest">
+    <title>Estratégia Digital | Conteúdo Imersivo & Estética Digital</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* PALETA LIGHT & SOPHISTICATED */
+            --accent: #A67C65;     /* Rosy Brown / Cobre Rosado */
+            --bg: #FDFBF7;         /* Bege Areia Claro / Off-white */
+            --card-bg: #FFFFFF;    /* Branco Puro para os cartões */
+            --text-main: #2A2522;  /* Marrom Café Suave */
+            --text-dim: #736B66;   /* Taupe Quente */
+            
+            /* COMPLEMENTO LEVE: Rosa Chá Suave */
+            --complement: #E6D7D2; /* Soft Dusty Rose */
+            --complement-dark: #C4AFA8; /* Dusty Rose mais escuro */
+        }
+
+        /* Forçando o fundo claro para sobrescrever o style.css escuro */
+        body { 
+            background-color: var(--bg) !important; 
+            color: var(--text-main) !important; 
+        }
+        
+        [id] { scroll-margin-top: 80px; }
+
+        /* Aplicação da Fonte com Serifa nos Títulos */
+        h1, h2, h3, h4, .logo { font-family: 'Playfair Display', serif; }
+        h1 { font-weight: 700; letter-spacing: -1px; }
+
+        /* Header Suavizado no Fundo Claro */
+        header.scrolled { background: rgba(253, 251, 247, 0.96) !important; border-bottom: 1px solid rgba(0, 0, 0, 0.04); }
+        .logo { font-weight: 700; font-size: 26px; color: var(--text-main) !important; }
+        .logo span { color: var(--accent) !important; font-weight: 400; font-style: italic; }
+        .nav-links a { color: var(--text-main) !important; font-weight: 600; text-transform: lowercase; font-style: italic; font-family: 'Playfair Display', serif; font-size: 16px;}
+        .nav-links a:hover { color: var(--accent) !important; }
+        .btn-nav { background: var(--accent) !important; color: #FFF !important; font-family: 'Plus Jakarta Sans', sans-serif !important; text-transform: none !important; font-style: normal !important; font-weight: 700 !important; font-size: 14px !important; border: none !important;}
+
+        /* Badge mais delicada com Rosa Chá */
+        .badge {
+            border-color: rgba(196, 175, 168, 0.4) !important;
+            color: var(--accent) !important;
+            background: rgba(230, 215, 210, 0.2) !important;
+            font-weight: 600;
+            letter-spacing: 2px;
+            font-size: 10px;
+        }
+        
+        /* Gradiente adaptado: Bege -> Rosa Chá */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--complement-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Botões */
+        .btn-main {
+            background: var(--accent) !important;
+            color: #FFFFFF !important;
+            border-radius: 50px !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(166, 124, 101, 0.25) !important;
+            border: none !important;
+        }
+        .btn-main:hover {
+            box-shadow: 0 6px 20px rgba(166, 124, 101, 0.35) !important;
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            border: 1px solid rgba(0, 0, 0, 0.1) !important;
+            color: var(--text-main) !important;
+            border-radius: 50px !important;
+            font-weight: 600 !important;
+            background: transparent !important;
+        }
+        .btn-outline:hover { background: var(--complement) !important; border-color: var(--complement) !important; color: var(--text-main) !important; }
+
+        /* Textos descritivos */
+        p { color: var(--text-dim) !important; }
+
+        /* Cards de Tecnologia - Sombras sutis */
+        .tech-card {
+            background: var(--card-bg) !important;
+            border: 1px solid rgba(0, 0, 0, 0.03) !important;
+            border-radius: 20px !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02) !important;
+            transition: all 0.4s ease;
+        }
+        .tech-card:hover {
+            border-color: rgba(230, 215, 210, 0.5) !important;
+            box-shadow: 0 15px 40px rgba(196, 175, 168, 0.1) !important;
+            transform: translateY(-5px);
+        }
+        .tech-card h3 { color: var(--text-main) !important; }
+        .card-image { border: none !important; border-radius: 12px; }
+
+        /* NOVA SEÇÃO DE DIFERENCIAIS (CURADORIA EM CARDS) */
+        .grid-diff {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .diff-item {
+            background: var(--card-bg) !important;
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 1, 0.30) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+            transition: all 0.4s ease;
+            text-align: center;
+        }
+        .diff-item:hover {
+            border-color: rgba(230, 215, 210, 0.5) !important;
+            box-shadow: 0 15px 40px rgba(196, 175, 168, 0.1);
+            transform: translateY(-5px);
+        }
+        .number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem !important;
+            color: var(--complement-dark) !important;
+            display: block;
+            margin-bottom: 15px;
+            line-height: 1;
+            opacity: 0.6;
+            font-style: italic;
+            font-weight: 400;
+        }
+        .diff-item h4 {
+            color: var(--text-main) !important;
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+        .diff-item p {
+            color: var(--text-dim) !important;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Planos - Branco no fundo bege */
+        .price-card {
+            background: var(--card-bg) !important;
+            border: 1px solid rgba(0, 0, 0, 0.04) !important;
+            border-radius: 24px !important;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15) !important;
+        }
+        .price-card h3 { font-family: 'Playfair Display', serif; color: var(--text-main) !important; }
+        .price-card .amount { color: var(--text-main) !important; }
+        .price-card .currency { color: var(--text-dim) !important; }
+        .price-card .period { color: var(--text-dim) !important; }
+        
+        /* Destaque do Plano Maratona - Sofisticado Rosa Chá */
+        .price-card.featured {
+            border-color: var(--complement-dark) !important;
+            background: #FAF8F6 !important; /* Um off-white levemente rosado */
+            box-shadow: 0 15px 45px rgba(196, 175, 168, 0.12) !important;
+        }
+        .price-card.featured .pop-tag {
+            background: var(--complement-dark) !important;
+            color: #fff !important;
+            font-weight: 700;
+        }
+        .price-card.featured .currency, .price-card.featured .amount { color: var(--text-main) !important; }
+        .price-card.featured .btn-main {
+            background: var(--accent) !important;
+            color: #fff !important;
+            box-shadow: 0 5px 20px rgba(166, 124, 101, 0.25) !important;
+        }
+        .price-card.featured .btn-main:hover {
+            box-shadow: 0 8px 25px rgba(166, 124, 101, 0.35) !important;
+        }
+        
+        /* Fita de desconto suavizada */
+        del { color: #A8A19C !important; text-decoration-color: var(--accent) !important; }
+        .discount-note { color: var(--accent) !important; font-weight: 700; }
+
+        .price-list li { color: var(--text-dim) !important; }
+        .price-list li::before { color: var(--complement-dark) !important; content: "✓" !important;}
+        .price-list li strong { color: var(--text-main) !important; }
+        
+        /* Hero & CTA Final no Fundo Claro */
+        .hero { background: radial-gradient(circle at center, #FFFFFF 0%, var(--bg) 100%) !important; }
+        .hero h1 { color: var(--text-main) !important; }
+        
+        .section-header h2 { color: var(--text-main) !important; }
+
+        .cta-final {
+            background: radial-gradient(circle at bottom center, #F6F1ED 0%, var(--bg) 100%) !important;
+            border-top: 1px solid rgba(0,0,0,0.02);
+        }
+        .cta-final h2 { color: var(--text-main) !important; }
+        .cta-final::before { background: var(--complement) !important; opacity: 0.1 !important; }
+        
+        footer { border-top: 1px solid rgba(0,0,0,0.04) !important; color: var(--text-dim) !important; background: #FAF9F7 !important;}
+
+    </style>
+    
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '882979604609252');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=882979604609252&ev=PageView&noscript=1" /></noscript>
+</head>
+
+<body>
+
+    <header id="header">
+        <nav class="container">
+            <div class="logo">Estratégia<span> Digital</span></div>
+            <ul class="nav-links">
+                <li><a href="#tecnologia">A Arte</a></li>
+                <li><a href="#execucao-elite">O Cuidado</a></li>
+                <li><a href="#investimento">Planos</a></li>
+                <li><a href="https://wa.me/SEUNUMERO" target="_blank" class="btn-nav">Conversar</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="badge">Estética & Sensibilidade em Florianópolis</div>
+                <h1>Sua marca revelada com <br><span class="gradient-text">sofisticação e autenticidade.</span></h1>
+                <p>Nós traduzimos a essência da sua comunicação em produções imersivas e edições de arte, garantindo que sua marca encante e conecte com o profissionalismo que ela merece.</p>
+                <div class="hero-btns">
+                    <a href="https://wa.me/5548996109220?text=Olá, gostaria de conhecer melhor os serviços de estética visual da Estratégia Digital." target="_blank"
+                        class="btn-main">Revelar Minha Essência</a>
+                    <a href="#execucao-elite" class="btn-outline">Conhecer Nosso Cuidado</a>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="tecnologia" class="tech-specs container">
+            <div class="section-header">
+                <h2>A Arte da Captação</h2>
+                <p>Mais do que postar, envolvemos sua audiência com uma qualidade visual que encanta e diferencia.</p>
+            </div>
+            <div class="grid-tech">
+                <div  class="tech-card">
+                    <div class="card-image">
+                        <img src="imagens/avata.jpg" alt="Drone DJI Avata 2">
+                    </div>
+                    <h3>Perspectiva Envolvente</h3>
+                    <p>Com o <strong>Avata 2</strong>, criamos voos fluídos e dinâmicos que revelam a beleza e os detalhes do seu espaço por ângulos únicos.</p>
+                </div>
+
+                <div class="tech-card">
+                    <div class="card-image">
+                        <img src="imagens/kit.PNG" alt="Sony ZV-E10 com Gimbal">
+                    </div>
+                    <h3>Qualidade de Cinema</h3>
+                    <p>Captação com a <strong>Sony ZV-E10</strong>. Texturas ricas, cores fiéis e imagens ultraestáveis para uma estética impecável.</p>
+                </div>
+
+                <div class="tech-card">
+                    <div class="card-image">
+                        <img src="imagens/edicao.PNG" alt="Edição de vídeo profissional">
+                    </div>
+                    <h3>Narrativas que Encantam</h3>
+                    <p>Criamos roteiros estratégicos e edições sensíveis com ganchos de conexão, focadas em retenção e no desejo pela sua marca.</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="https://wa.me/5548996109220?text=Olá, gostaria de conversar sobre a estética visual da minha marca." target="_blank" class="btn-main">Quero Conteúdos que Encantam</a>
+            </div>
+            
+        </section>
+
+        <section style="background-color: #7500001a;" id="execucao-elite" class="differentials" >
+            <div class="container">
+                <div class="section-header" >
+                    <span class="badge">Curadoria Estratégia Digital</span>
+                    <h2>Compromisso com o <span class="gradient-text">Cuidado e a Perfeição.</span></h2>
+                    <p>Mais do que imagens bonitas, entregamos a tranquilidade de processos organizados e uma estética previsível.</p>
+                </div>
+
+                <div class="grid-diff">
+                    <div class="diff-item">
+                        <span class="number">01</span>
+                        <h4>Curadoria & Planejamento</h4>
+                        <p>Nada é por acaso. Criamos um cronograma estético que respeita sua agenda e fortalece sua identidade.</p>
+                    </div>
+                    <div class="diff-item">
+                        <span class="number">02</span>
+                        <h4>Pontualidade Impecável</h4>
+                        <p>Respeitamos o timing do seu negócio. Suas campanhas e conteúdos entregues rigorosamente no prazo acordado.</p>
+                    </div>
+                    <div class="diff-item">
+                        <span class="number">03</span>
+                        <h4>Acompanhamento Próximo</h4>
+                        <p>Assumimos a curadoria da sua produção. Nosso compromisso é entregar exatamente a estética que sua marca exige.</p>
+                    </div>
+                    <div class="diff-item">
+                        <span class="number">04</span>
+                        <h4>Execução & Entrega Real</h4>
+                        <p>Transformamos seu propósito em ativos digitais concretos, prontos para conectar e performar no feed.</p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 60px;">
+                    <a href="https://wa.me/5548996109220?text=Olá, gostaria de saber mais sobre o método de trabalho da Estratégia Digital." target="_blank" class="btn-main">Elevar o Nível da Minha Marca</a>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="investimento" class="pricing container">
+            <div class="section-header">
+                <span class="badge">Sua Presença Digital</span>
+                <h2>Escolha seu próximo <span class="gradient-text">nível de conexão.</span></h2>
+                <p>Soluções de curadoria visual para quem busca o extraordinário.</p>
+            </div>
+
+            <div class="grid-pricing" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+                
+                <div class="price-card featured">
+                    <div class="price-content">
+                        <span class="pop-tag">🔥 Oportunidade Única</span>
+                        <h3>Plano Maratona</h3>
+                        <p>Sua tranquilidade garantida: <strong>6 meses de Instagram com curadoria total, sem preocupações.</strong></p>
+                        <div class="value">
+                            <div style="font-size: 0.95rem; color: #736B66; margin-bottom: 5px; opacity: 0.8;">De <del>R$ 2.778,89/mês</del> por:</div>
+                            <span class="currency">R$</span>
+                            <span class="amount">2.369</span>
+                            <span class="period">,99 /mês<br>
+                            <span class="discount-note">Equivalente mensal diluído no <br>pagamento à vista do semestre</span></span>
+                        </div>
+                        <ul class="price-list">
+                            <li><strong>6 Meses de Gestão e Curadoria</strong></li>
+                            <li>Tudo do Plano Premium</li>
+                            <li>A produção do semestre em 5 dias</li>
+                            <li><strong>1 Dia em Estúdio Profissional</strong></li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/5548996109220?text=Olá, quero garantir minha Presença Digital com o Plano Maratona."
+                        target="_blank" class="btn-main full">Garantir Minha Presença</a>
+                </div>
+
+                <div class="price-card">
+                    <div class="price-content">
+                        <h3>Plano Start</h3>
+                        <p>Um dia de captação presencial com olhar apurado e equipamento de ponta.</p>
+                        <div class="value">
+                            <span class="currency">R$</span>
+                            <span class="amount">968</span>
+                            <span class="period">,07</span>
+                        </div>
+                        <ul class="price-list">
+                            <li>Captação Presencial</li>
+                            <li><strong>Olhar Estratégia Digital</strong></li>
+                            <li>Câmera Sony & Drone</li>
+                            <li>Horário Acordado</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/5548996109220?text=Olá, gostaria de solicitar o Plano Start de captação."
+                        target="_blank" class="btn-outline full">Solicitar Olhar Start</a>
+                </div>
+
+                <div class="price-card">
+                    <div class="price-content">
+                        <h3>Plano Pro</h3>
+                        <p>Curadoria mensal com edição estratégica para manter sua consistência e beleza online.</p>
+                        <div class="value">
+                            <span class="currency">R$</span>
+                            <span class="amount">1.959</span>
+                            <span class="period">,77 /mês</span>
+                        </div>
+                        <ul class="price-list">
+                            <li>Acompanhamento Mensal</li>
+                            <li><strong>Edição de 12 Vídeos de Arte</strong></li>
+                            <li>Sony ZV-E10 + Drone FPV</li>
+                            <li>Edição com Cuidado</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/5548996109220?text=Olá, tenho interesse no Plano Pro de acompanhamento mensal."
+                        target="_blank" class="btn-outline full">Escolher Plano Pro</a>
+                </div>
+
+                <div class="price-card">
+                    <div class="price-content">
+                        <span class="pop-tag" style="background: rgba(230, 215, 210, 0.2); color: var(--accent);">Tranquilidade Total</span>
+                        <h3>Plano Premium</h3>
+                        <p>Gestão completa da sua imagem. Cuidamos de tudo, do planejamento à postagem.</p>
+                        <div class="value">
+                            <span class="currency">R$</span>
+                            <span class="amount">2.778</span>
+                            <span class="period">,89 /mês</span>
+                        </div>
+                        <ul class="price-list">
+                            <li>Captação, Edição e Postagem</li>
+                            <li><strong>Narrativas e Copys que Conectam</strong></li>
+                            <li>Planejamento Estético</li>
+                            <li>Organização de Conteúdo</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/5548996109220?text=Olá, quero delegar minha gestão de conteúdo com o Plano Premium."
+                        target="_blank" class="btn-outline full">Quero Tranquilidade</a>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="cta-final">
+            <div class="container" >
+                <div class="cta-content">
+                    <span class="badge">Conversa Próxima</span>
+                    <h2>Vamos juntas elevar a sua presença digital <br><span class="gradient-text">ao nível extraordinário?</span></h2>
+                    <p>Seletiva aberta para novos projetos sensíveis em Florianópolis e região. Transforme sua comunicação em um ativo de desejo.</p>
+
+                    <div class="cta-actions">
+                        <a href="https://wa.me/5548996109220?text=Olá, gostaria de marcar uma conversa para conhecer a Estratégia Digital."
+                            target="_blank" class="btn-main large">
+                            <span class="btn-text">Agendar Conversa</span>
+                            <span class="btn-subtext">Conversar via WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Estratégia Digital &copy; 2026 | Florianópolis, SC</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
