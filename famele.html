@@ -230,7 +230,83 @@
         .cta-final::before { background: var(--complement) !important; opacity: 0.1 !important; }
         
         footer { border-top: 1px solid rgba(0,0,0,0.04) !important; color: var(--text-dim) !important; background: #FAF9F7 !important;}
+/* SEÇÃO SOBRE NÓS */
+        .about {
+            padding: 80px 0;
+        }
+        .grid-about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-text .section-header {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        .about-text p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        .about-image {
+            position: relative;
+        }
+        .about-image-bg {
+            background: var(--complement-dark);
+            opacity: 0.15;
+            border-radius: 20px;
+            position: absolute;
+            inset: -20px -20px 20px 20px;
+            z-index: 0;
+        }
+        .about-img-element {
+            width: 100%;
+            border-radius: 20px;
+            object-fit: cover;
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(0,0,0,0.03);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+        }
+        .about-tag {
+            position: absolute;
+            bottom: 30px;
+            left: -30px;
+            background: var(--card-bg);
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(166, 124, 101, 0.15);
+            z-index: 2;
+            border: 1px solid rgba(196, 175, 168, 0.3);
+        }
+        .about-tag h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 2px;
+        }
+        .about-tag span {
+            font-size: 12px;
+            color: var(--accent);
+            font-weight: 600;
+        }
 
+        /* Responsividade para o Sobre Nós */
+        @media (max-width: 992px) {
+            .grid-about {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .about-text .section-header {
+                text-align: center;
+            }
+            .about-tag {
+                left: -10px;
+                bottom: 10px;
+            }
+        }
     </style>
     
     <script>
@@ -362,8 +438,34 @@
 
             </div>
         </section>
+        <section id="sobre" class="about container">
+            <div class="grid-about">
+                <div class="about-text">
+                    <div class="section-header">
+                        <span class="badge">Nossa História</span>
+                        <h2>A sensibilidade humana por trás da <span class="gradient-text">precisão digital.</span></h2>
+                    </div>
+                    
+                    <p>Prazer, me chamo <strong>Luiz Felipe</strong>. Sou natural de Florianópolis e minha jornada na comunicação digital começou nos bastidores. Durante dois anos, atuei como Gestor de Tráfego especializado em Meta Ads e estudei Análise e Desenvolvimento de Sistemas. Essa vivência me permitiu entender padrões de comunicação e entender exatamente o que faz um criativo converter.</p>
+                    
+                    <p>Hoje, cursando <strong>Psicologia</strong>, minha visão sobre a criação de conteúdo se expandiu. Em 2025, ao conviver de perto com profissionais do mercado, notei uma dor muito clar a dificuldade de encontrarem uma parceria que conseguisse refletir a real beleza dos escritórios de arquitetura, design de interiores e marcas de móveis sob medida, sem que perdessem sua própria essência.</p>
+                    
+                    <p>Foi justamente pra suprir essa lacuna que decidi empreender com a Estratégia Digital. Acabei me apaixonando profundamente por essa área, aqui consigo aliar minha bagagem técnica em plataformas e algoritmos com o conhecimento do comportamento humano que a psicologia me proporciona. O resultado são narrativas visuais que não apenas impressionam pela estética, mas que geram conexões e desejos reais.</p>
+                </div>
+                
+                <div class="about-image">
+                    <div class="about-image-bg"></div>
+                    <img src="imagens/luiz.png" alt="Luiz Felipe - Fundador" class="about-img-element">
+                    
+                    <div class="about-tag">
+                        <h4>Luiz Felipe</h4>
+                        <span>Fundador & Estrategista</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <section id="investimento" class="pricing container">
+    <!--    <section id="investimento" class="pricing container">
             <div class="section-header">
                 <span class="badge">Sua Presença Digital</span>
                 <h2>Escolha seu próximo <span class="gradient-text">nível de conexão.</span></h2>
@@ -457,12 +559,12 @@
                 </div>
 
             </div>
-        </section>
+        </section> -->
 
         <section class="cta-final">
             <div class="container" >
                 <div class="cta-content">
-                    <span class="badge">Conversa Próxima</span>
+                        
                     <h2>Vamos juntos elevar a sua presença digital <br><span class="gradient-text">ao nível extraordinário?</span></h2>
                     <p>Seletiva aberta para novos projetos sensíveis em Florianópolis e região. Transforme sua comunicação em um ativo de desejo.</p>
 
