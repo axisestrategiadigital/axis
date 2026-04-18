@@ -7,156 +7,214 @@
     <link rel="icon" type="image/x-icon" href="imagens/favicoin.PNG">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-
     <link rel="manifest" href="site.webmanifest">
+    
     <title>Estratégia Digital | Conteúdo Imersivo & Estética Digital</title>
-    <link rel="stylesheet" href="style.css">
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
+        /* ========================================= */
+        /* RESET E ESTRUTURA GLOBAL */
+        /* ========================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         :root {
-            /* PALETA LIGHT & SOPHISTICATED */
-            --accent: #A67C65;     /* Rosy Brown / Cobre Rosado */
-            --bg: #FDFBF7;         /* Bege Areia Claro / Off-white */
-            --card-bg: #FFFFFF;    /* Branco Puro para os cartões */
-            --text-main: #2A2522;  /* Marrom Café Suave */
-            --text-dim: #736B66;   /* Taupe Quente */
-            
-            /* COMPLEMENTO LEVE: Rosa Chá Suave */
-            --complement: #E6D7D2; /* Soft Dusty Rose */
-            --complement-dark: #C4AFA8; /* Dusty Rose mais escuro */
+            --accent: #A67C65;     
+            --bg: #FDFBF7;         
+            --card-bg: #FFFFFF;    
+            --text-main: #2A2522;  
+            --text-dim: #736B66;   
+            --complement: #E6D7D2; 
+            --complement-dark: #C4AFA8; 
         }
 
-        /* Forçando o fundo claro para sobrescrever o style.css escuro */
+        /* TRAVA CONTRA ROLAGEM HORIZONTAL (O SEGREDO PARA O MOBILE) */
+        html, body { 
+            scroll-behavior: smooth; 
+            overflow-x: hidden; 
+            width: 100%;
+        }
+
         body { 
-            background-color: var(--bg) !important; 
-            color: var(--text-main) !important; 
-            .btn-whatsapp-flutuante {
-    position: fixed;
-    bottom: 25px; /* Distância da parte de baixo */
-    right: 25px; /* Distância da direita */
-    width: 60px;
-    height: 60px;
-    background-color: #25d366; /* Cor verde oficial do WhatsApp */
-    color: white;
-    border-radius: 50%; /* Deixa o botão redondo */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-    z-index: 1000; /* Garante que fique acima dos outros elementos */
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    text-decoration: none;
-}
-
-.btn-whatsapp-flutuante:hover {
-    background-color: #1ebe5d;
-    transform: scale(1.1); /* Dá um pequeno zoom ao passar o mouse */
-    color: white;
-}
+            background-color: var(--bg); 
+            color: var(--text-main); 
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.6;
         }
-        
-        [id] { scroll-margin-top: 80px; }
 
-        /* Aplicação da Fonte com Serifa nos Títulos */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section { padding: 100px 0; }
+
+        a { text-decoration: none; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* Tipografia Base */
         h1, h2, h3, h4, .logo { font-family: 'Playfair Display', serif; }
         h1 { font-weight: 700; letter-spacing: -1px; }
 
-        /* Header Suavizado no Fundo Claro */
-        header.scrolled { background: rgba(253, 251, 247, 0.96) !important; border-bottom: 1px solid rgba(0, 0, 0, 0.04); }
-        .logo { font-weight: 700; font-size: 26px; color: var(--text-main) !important; }
-        .logo span { color: var(--accent) !important; font-weight: 400; font-style: italic; }
-        .nav-links a { color: var(--text-main) !important; font-weight: 600; text-transform: lowercase; font-style: italic; font-family: 'Playfair Display', serif; font-size: 16px;}
-        .nav-links a:hover { color: var(--accent) !important; }
-        .btn-nav { background: var(--accent) !important; color: #FFF !important; font-family: 'Plus Jakarta Sans', sans-serif !important; text-transform: none !important; font-style: normal !important; font-weight: 700 !important; font-size: 14px !important; border: none !important;}
-
-        /* Badge mais delicada com Rosa Chá */
-        .badge {
-            border-color: rgba(196, 175, 168, 0.4) !important;
-            color: var(--accent) !important;
-            background: rgba(230, 215, 210, 0.2) !important;
-            font-weight: 600;
-            letter-spacing: 2px;
-            font-size: 10px;
-        }
+        /* ========================================= */
+        /* COMPONENTES */
+        /* ========================================= */
         
-        /* Gradiente adaptado: Bege -> Rosa Chá */
         .gradient-text {
             background: linear-gradient(135deg, var(--accent) 0%, var(--complement-dark) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        /* Botões */
-        .btn-main {
-            background: var(--accent) !important;
-            color: #FFFFFF !important;
-            border-radius: 50px !important;
-            font-weight: 700 !important;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 15px rgba(166, 124, 101, 0.25) !important;
-            border: none !important;
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 50px;
+            border: 1px solid rgba(196, 175, 168, 0.4);
+            color: var(--accent);
+            background: rgba(230, 215, 210, 0.2);
+            font-weight: 600;
+            letter-spacing: 2px;
+            font-size: 11px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
         }
+
+        .btn-main, .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .btn-main {
+            background: var(--accent);
+            color: #FFFFFF;
+            box-shadow: 0 4px 15px rgba(166, 124, 101, 0.25);
+            border: none;
+        }
+
         .btn-main:hover {
-            box-shadow: 0 6px 20px rgba(166, 124, 101, 0.35) !important;
+            box-shadow: 0 6px 20px rgba(166, 124, 101, 0.35);
             transform: translateY(-2px);
         }
+
         .btn-outline {
-            border: 1px solid rgba(0, 0, 0, 0.1) !important;
-            color: var(--text-main) !important;
-            border-radius: 50px !important;
-            font-weight: 600 !important;
-            background: transparent !important;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: var(--text-main);
+            background: transparent;
         }
-        .btn-outline:hover { background: var(--complement) !important; border-color: var(--complement) !important; color: var(--text-main) !important; }
 
-        /* Textos descritivos */
-        p { color: var(--text-dim) !important; }
+        .btn-outline:hover { 
+            background: var(--complement); 
+            border-color: var(--complement); 
+            color: var(--text-main); 
+        }
 
-        /* Cards de Tecnologia - Sombras sutis */
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 2.8rem; margin-bottom: 15px; color: var(--text-main); }
+        .section-header p { font-size: 1.1rem; color: var(--text-dim); max-width: 600px; margin: 0 auto; }
+
+        /* ========================================= */
+        /* CABEÇALHO (HEADER) */
+        /* ========================================= */
+        header { 
+            padding: 20px 0; 
+            position: fixed; 
+            width: 100%; 
+            top: 0; 
+            z-index: 100; 
+            background: rgba(253, 251, 247, 0.96); 
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            backdrop-filter: blur(10px);
+        }
+        
+        nav.container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 700; font-size: 26px; color: var(--text-main); }
+        .logo span { color: var(--accent); font-weight: 400; font-style: italic; }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a { color: var(--text-main); font-weight: 600; text-transform: lowercase; font-style: italic; font-family: 'Playfair Display', serif; font-size: 17px; transition: color 0.3s ease;}
+        .nav-links a:hover { color: var(--accent); }
+        .btn-nav { background: var(--accent) !important; color: #FFF !important; font-family: 'Plus Jakarta Sans', sans-serif !important; text-transform: none !important; font-style: normal !important; font-weight: 700 !important; font-size: 14px !important; border: none !important; padding: 10px 25px !important; border-radius: 50px;}
+
+        /* ========================================= */
+        /* HERO SECTION */
+        /* ========================================= */
+        .hero { 
+            background: radial-gradient(circle at center, #FFFFFF 0%, var(--bg) 100%); 
+            padding-top: 180px;
+            padding-bottom: 120px;
+            text-align: center;
+        }
+        .hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 25px; color: var(--text-main); }
+        .hero p { font-size: 1.15rem; color: var(--text-dim); max-width: 750px; margin: 0 auto 40px; }
+        .hero-btns { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;}
+
+        /* ========================================= */
+        /* A ARTE DA CAPTAÇÃO (TECNOLOGIA) */
+        /* ========================================= */
+        .grid-tech {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
         .tech-card {
-            background: var(--card-bg) !important;
-            border: 1px solid rgba(0, 0, 0, 0.03) !important;
-            border-radius: 20px !important;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02) !important;
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
             transition: all 0.4s ease;
+            padding: 25px;
+            text-align: center;
         }
         .tech-card:hover {
-            border-color: rgba(230, 215, 210, 0.5) !important;
-            box-shadow: 0 15px 40px rgba(196, 175, 168, 0.1) !important;
+            border-color: rgba(230, 215, 210, 0.5);
+            box-shadow: 0 15px 40px rgba(196, 175, 168, 0.1);
             transform: translateY(-5px);
         }
-        .tech-card h3 { color: var(--text-main) !important; }
-        .card-image { border: none !important; border-radius: 12px; }
+        .card-image img { border-radius: 12px; width: 100%; margin-bottom: 20px; }
+        .tech-card h3 { color: var(--text-main); font-size: 1.4rem; margin-bottom: 10px;}
+        .tech-card p { color: var(--text-dim); font-size: 0.95rem;}
 
-        /* NOVA SEÇÃO DE DIFERENCIAIS (CURADORIA EM CARDS) */
+        /* ========================================= */
+        /* DIFERENCIAIS (CUIDADO) */
+        /* ========================================= */
+        .differentials { background-color: #7500001a; }
         .grid-diff {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 30px;
-            margin-top: 50px;
         }
         .diff-item {
-            background: var(--card-bg) !important;
+            background: var(--card-bg);
             padding: 40px 30px;
             border-radius: 20px;
-            border: 1px solid rgba(0, 0, 1, 0.30) !important;
+            border: 1px solid rgba(0, 0, 1, 0.30);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
             transition: all 0.4s ease;
             text-align: center;
         }
         .diff-item:hover {
-            border-color: rgba(230, 215, 210, 0.5) !important;
+            border-color: rgba(230, 215, 210, 0.5);
             box-shadow: 0 15px 40px rgba(196, 175, 168, 0.1);
             transform: translateY(-5px);
         }
         .number {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem !important;
-            color: var(--complement-dark) !important;
+            font-size: 3.5rem;
+            color: var(--complement-dark);
             display: block;
             margin-bottom: 15px;
             line-height: 1;
@@ -164,94 +222,27 @@
             font-style: italic;
             font-weight: 400;
         }
-        .diff-item h4 {
-            color: var(--text-main) !important;
-            font-size: 1.25rem;
-            margin-bottom: 12px;
-        }
-        .diff-item p {
-            color: var(--text-dim) !important;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
+        .diff-item h4 { color: var(--text-main); font-size: 1.25rem; margin-bottom: 12px; }
+        .diff-item p { color: var(--text-dim); font-size: 0.95rem; }
 
-        /* Planos - Branco no fundo bege */
-        .price-card {
-            background: var(--card-bg) !important;
-            border: 1px solid rgba(0, 0, 0, 0.04) !important;
-            border-radius: 24px !important;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15) !important;
-        }
-        .price-card h3 { font-family: 'Playfair Display', serif; color: var(--text-main) !important; }
-        .price-card .amount { color: var(--text-main) !important; }
-        .price-card .currency { color: var(--text-dim) !important; }
-        .price-card .period { color: var(--text-dim) !important; }
-        
-        /* Destaque do Plano Maratona - Sofisticado Rosa Chá */
-        .price-card.featured {
-            border-color: var(--complement-dark) !important;
-            background: #FAF8F6 !important; /* Um off-white levemente rosado */
-            box-shadow: 0 15px 45px rgba(196, 175, 168, 0.12) !important;
-        }
-        .price-card.featured .pop-tag {
-            background: var(--complement-dark) !important;
-            color: #fff !important;
-            font-weight: 700;
-        }
-        .price-card.featured .currency, .price-card.featured .amount { color: var(--text-main) !important; }
-        .price-card.featured .btn-main {
-            background: var(--accent) !important;
-            color: #fff !important;
-            box-shadow: 0 5px 20px rgba(166, 124, 101, 0.25) !important;
-        }
-        .price-card.featured .btn-main:hover {
-            box-shadow: 0 8px 25px rgba(166, 124, 101, 0.35) !important;
-        }
-        
-        /* Fita de desconto suavizada */
-        del { color: #A8A19C !important; text-decoration-color: var(--accent) !important; }
-        .discount-note { color: var(--accent) !important; font-weight: 700; }
-
-        .price-list li { color: var(--text-dim) !important; }
-        .price-list li::before { color: var(--complement-dark) !important; content: "✓" !important;}
-        .price-list li strong { color: var(--text-main) !important; }
-        
-        /* Hero & CTA Final no Fundo Claro */
-        .hero { background: radial-gradient(circle at center, #FFFFFF 0%, var(--bg) 100%) !important; }
-        .hero h1 { color: var(--text-main) !important; }
-        
-        .section-header h2 { color: var(--text-main) !important; }
-
-        .cta-final {
-            background: radial-gradient(circle at bottom center, #F6F1ED 0%, var(--bg) 100%) !important;
-            border-top: 1px solid rgba(0,0,0,0.02);
-        }
-        .cta-final h2 { color: var(--text-main) !important; }
-        .cta-final::before { background: var(--complement) !important; opacity: 0.1 !important; }
-        
-        footer { border-top: 1px solid rgba(0,0,0,0.04) !important; color: var(--text-dim) !important; background: #FAF9F7 !important;}
-/* SEÇÃO SOBRE NÓS */
-        .about {
-            padding: 80px 0;
-        }
+        /* ========================================= */
+        /* SOBRE NÓS - SOLUÇÃO FORÇA BRUTA */
+        /* ========================================= */
         .grid-about {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
         }
-        .about-text .section-header {
-            text-align: left;
-            margin-bottom: 30px;
+        
+        .texto-blindado {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--text-dim);
+            text-align: justify;
         }
-        .about-text p {
-            margin-bottom: 20px;
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-        .about-image {
-            position: relative;
-        }
+
+        .about-image { position: relative; }
         .about-image-bg {
             background: var(--complement-dark);
             opacity: 0.15;
@@ -280,62 +271,92 @@
             z-index: 2;
             border: 1px solid rgba(196, 175, 168, 0.3);
         }
-        .about-tag h4 {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 2px;
-        }
-        .about-tag span {
-            font-size: 12px;
-            color: var(--accent);
-            font-weight: 600;
-        }
+        .about-tag h4 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; font-weight: 700; color: var(--text-main); margin-bottom: 2px; }
+        .about-tag span { font-size: 12px; color: var(--accent); font-weight: 600; }
 
-        /* Responsividade para o Sobre Nós */
+        /* ========================================= */
+        /* CTA FINAL E FOOTER */
+        /* ========================================= */
+        .cta-final {
+            background: radial-gradient(circle at bottom center, #F6F1ED 0%, var(--bg) 100%);
+            border-top: 1px solid rgba(0,0,0,0.02);
+            text-align: center;
+        }
+        .cta-content { max-width: 800px; margin: 0 auto; }
+        .cta-final h2 { color: var(--text-main); font-size: 2.5rem; margin-bottom: 20px; }
+        .cta-final p { font-size: 1.1rem; color: var(--text-dim); margin-bottom: 40px;}
+        .btn-main.large { padding: 15px 40px; flex-direction: column; border-radius: 20px !important;}
+        .btn-subtext { font-size: 0.8rem; font-weight: 400; opacity: 0.8; margin-top: 3px; font-family: 'Plus Jakarta Sans', sans-serif;}
+        
+        footer { border-top: 1px solid rgba(0,0,0,0.04); color: var(--text-dim); background: #FAF9F7; text-align: center; padding: 30px 0;}
+
+        /* BOTÃO WHATSAPP FLUTUANTE */
+        .btn-whatsapp-flutuante {
+            position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px;
+            background-color: #25d366; color: white; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); z-index: 1000; 
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .btn-whatsapp-flutuante:hover { background-color: #1ebe5d; transform: scale(1.1); color: white; }
+
+        /* ========================================= */
+        /* RESPONSIVIDADE TOTAL (CORREÇÃO DO MOBILE) */
+        /* ========================================= */
         @media (max-width: 992px) {
-            .grid-about {
-                grid-template-columns: 1fr;
-                gap: 40px;
+            section { padding: 70px 0; } /* Menos espaço sobrando no topo/base no celular */
+            
+            .grid-about { grid-template-columns: 1fr; gap: 40px; }
+            .about-text .section-header { text-align: center; }
+            
+            /* Ajuste crucial para a tag não vazar da tela */
+            .about-tag { 
+                left: 15px; 
+                bottom: 15px; 
+                padding: 10px 20px;
             }
-            .about-text .section-header {
-                text-align: center;
-            }
-            .about-tag {
-                left: -10px;
-                bottom: 10px;
-            }
+            
+            .texto-blindado { text-align: left; font-size: 1.05rem; }
+            
+            .hero h1 { font-size: 2.4rem; }
+            .hero { padding-top: 140px; padding-bottom: 80px; }
+            
+            .section-header h2 { font-size: 2.2rem; }
+            .cta-final h2 { font-size: 2rem; }
+            
+            .nav-links { display: none; /* Esconde menu no celular para não bugar o cabeçalho */ }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2rem; }
+            .section-header h2 { font-size: 1.8rem; }
+            .btn-main, .btn-outline { width: 100%; } /* Botões ocupam a tela toda no celular para ficar mais fácil de clicar */
         }
     </style>
     
     <script>
         !function (f, b, e, v, n, t, s) {
             if (f.fbq) return; n = f.fbq = function () {
-                n.callMethod ?
-                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
             };
             if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
             n.queue = []; t = b.createElement(e); t.async = !0;
             t.src = v; s = b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t, s)
-        }(window, document, 'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
+        }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '882979604609252');
         fbq('track', 'PageView');
     </script>
-    <noscript><img height="1" width="1" style="display:none"
-            src="https://www.facebook.com/tr?id=882979604609252&ev=PageView&noscript=1" /></noscript>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=882979604609252&ev=PageView&noscript=1" /></noscript>
 </head>
 
 <body>
     <a href="https://wa.me/5548996109220?text=Ol%C3%A1%20vim%20do%20site%20e%20gostaria%20de%20um%20or%C3%A7amento%20personalizado" 
-   target="_blank" 
-   class="btn-whatsapp-flutuante">
-    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" viewBox="0 0 16 16">
-        <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.004-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
-    </svg>
-</a>
+   target="_blank" class="btn-whatsapp-flutuante">
+        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.004-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+        </svg>
+    </a>
 
     <header id="header">
         <nav class="container">
@@ -343,7 +364,6 @@
             <ul class="nav-links">
                 <li><a href="#tecnologia">A Arte</a></li>
                 <li><a href="#execucao-elite">O Cuidado</a></li>
-                <li><a href="#investimento">Planos</a></li>
                 <li><a href="https://wa.me/SEUNUMERO" target="_blank" class="btn-nav">Conversar</a></li>
             </ul>
         </nav>
@@ -356,13 +376,11 @@
                 <h1>Sua marca revelada com <br><span class="gradient-text">sofisticação e autenticidade.</span></h1>
                 <p>Nós traduzimos a essência da sua comunicação em produções imersivas e edições de arte, garantindo que sua marca encante e conecte com o profissionalismo que ela merece.</p>
                 <div class="hero-btns">
-                    <a href="https://wa.me/5548996109220?text=Olá, gostaria de conhecer melhor os serviços de estética visual da Estratégia Digital." target="_blank"
-                        class="btn-main">Revelar Minha Essência</a>
+                    <a href="https://wa.me/5548996109220?text=Olá, gostaria de conhecer melhor os serviços de estética visual da Estratégia Digital." target="_blank" class="btn-main">Revelar Minha Essência</a>
                     <a href="#execucao-elite" class="btn-outline">Conhecer Nosso Cuidado</a>
                 </div>
             </div>
         </section>
-
 
         <section id="tecnologia" class="tech-specs container">
             <div class="section-header">
@@ -370,45 +388,34 @@
                 <p>Mais do que postar, envolvemos sua audiência com uma qualidade visual que encanta e diferencia.</p>
             </div>
             <div class="grid-tech">
-                <div  class="tech-card">
-                    <div class="card-image">
-                        <img src="imagens/avata.jpg" alt="Drone DJI Avata 2">
-                    </div>
+                <div class="tech-card">
+                    <div class="card-image"><img src="imagens/avata.jpg" alt="Drone DJI Avata 2"></div>
                     <h3>Perspectiva Envolvente</h3>
                     <p>Com o <strong>Avata 2</strong>, criamos voos fluídos e dinâmicos que revelam a beleza e os detalhes do seu espaço por ângulos únicos.</p>
                 </div>
-
                 <div class="tech-card">
-                    <div class="card-image">
-                        <img src="imagens/kit.PNG" alt="Sony ZV-E10 com Gimbal">
-                    </div>
+                    <div class="card-image"><img src="imagens/kit.PNG" alt="Sony ZV-E10 com Gimbal"></div>
                     <h3>Qualidade de Cinema</h3>
                     <p>Captação com a <strong>Sony ZV-E10</strong>. Texturas ricas, cores fiéis e imagens ultraestáveis para uma estética impecável.</p>
                 </div>
-
                 <div class="tech-card">
-                    <div class="card-image">
-                        <img src="imagens/edicao.PNG" alt="Edição de vídeo profissional">
-                    </div>
+                    <div class="card-image"><img src="imagens/edicao.PNG" alt="Edição de vídeo profissional"></div>
                     <h3>Narrativas que Encantam</h3>
                     <p>Criamos roteiros estratégicos e edições sensíveis com ganchos de conexão, focadas em retenção e no desejo pela sua marca.</p>
                 </div>
             </div>
-            
             <div style="text-align: center; margin-top: 50px;">
                 <a href="https://wa.me/5548996109220?text=Olá, gostaria de conversar sobre a estética visual da minha marca." target="_blank" class="btn-main">Quero Conteúdos que Encantam</a>
             </div>
-            
         </section>
 
-        <section style="background-color: #7500001a;" id="execucao-elite" class="differentials" >
+        <section id="execucao-elite" class="differentials">
             <div class="container">
-                <div class="section-header" >
+                <div class="section-header">
                     <span class="badge">Curadoria Estratégia Digital</span>
                     <h2>Compromisso com o <span class="gradient-text">Cuidado e a Perfeição.</span></h2>
                     <p>Mais do que imagens bonitas, entregamos a tranquilidade de processos organizados e uma estética previsível.</p>
                 </div>
-
                 <div class="grid-diff">
                     <div class="diff-item">
                         <span class="number">01</span>
@@ -417,7 +424,7 @@
                     </div>
                     <div class="diff-item">
                         <span class="number">02</span>
-                        <h4>Pontualidade Impecável</h4>
+                        <h4>Pontualidade</h4>
                         <p>Respeitamos o timing do seu negócio. Suas campanhas e conteúdos entregues rigorosamente no prazo acordado.</p>
                     </div>
                     <div class="diff-item">
@@ -431,32 +438,33 @@
                         <p>Transformamos seu propósito em ativos digitais concretos, prontos para conectar e performar no feed.</p>
                     </div>
                 </div>
-
                 <div style="text-align: center; margin-top: 60px;">
                     <a href="https://wa.me/5548996109220?text=Olá, gostaria de saber mais sobre o método de trabalho da Estratégia Digital." target="_blank" class="btn-main">Elevar o Nível da Minha Marca</a>
                 </div>
-
             </div>
         </section>
+
         <section id="sobre" class="about container">
             <div class="grid-about">
                 <div class="about-text">
-                    <div class="section-header">
+                    <div class="section-header" style="text-align: left;">
                         <span class="badge">Nossa História</span>
                         <h2>A sensibilidade humana por trás da <span class="gradient-text">precisão digital.</span></h2>
                     </div>
                     
-                    <p>Prazer, me chamo <strong>Luiz Felipe</strong>. Sou natural de Florianópolis e minha jornada na comunicação digital começou nos bastidores. Durante dois anos, atuei como Gestor de Tráfego especializado em Meta Ads e estudei Análise e Desenvolvimento de Sistemas. Essa vivência me permitiu entender padrões de comunicação e entender exatamente o que faz um criativo converter.</p>
-                    
-                    <p>Hoje, cursando <strong>Psicologia</strong>, minha visão sobre a criação de conteúdo se expandiu. Em 2025, ao conviver de perto com profissionais do mercado, notei uma dor muito clar a dificuldade de encontrarem uma parceria que conseguisse refletir a real beleza dos escritórios de arquitetura, design de interiores e marcas de móveis sob medida, sem que perdessem sua própria essência.</p>
-                    
-                    <p>Foi justamente pra suprir essa lacuna que decidi empreender com a Estratégia Digital. Acabei me apaixonando profundamente por essa área, aqui consigo aliar minha bagagem técnica em plataformas e algoritmos com o conhecimento do comportamento humano que a psicologia me proporciona. O resultado são narrativas visuais que não apenas impressionam pela estética, mas que geram conexões e desejos reais.</p>
+                    <div class="texto-blindado">
+                        Prazer, me chamo <strong>Luiz Felipe</strong>. Sou natural de Florianópolis e minha jornada na comunicação digital começou nos bastidores. Durante dois anos, atuei como Gestor de Tráfego especializado em Meta Ads e estudei Análise e Desenvolvimento de Sistemas. Essa vivência me permitiu entender melhor os padrões de comunicação.
+                        <br><br><br>
+                        Hoje, cursando <strong>Psicologia</strong>, minha visão sobre a criação de conteúdo se expandiu. Em 2025, ao conviver de perto com profissionais do mercado, notei uma dor muito clara: a dificuldade de encontrarem uma parceria que conseguisse refletir a real beleza dos escritórios de arquitetura, design de interiores e de móveis sob medida, sem que perdessem sua própria essência.
+                        <br><br><br>
+                        Foi justamente pra suprir essa lacuna que decidi empreender com a Estratégia Digital. Acabei me apaixonando profundamente por essa área. Aqui consigo aliar minha bagagem técnica em plataformas e algoritmos com o conhecimento do comportamento humano que a psicologia me proporciona. O resultado são narrativas visuais que não apenas impressionam pela estética, mas que geram conexões e desejos reais.
+                    </div>
+
                 </div>
                 
                 <div class="about-image">
                     <div class="about-image-bg"></div>
                     <img src="imagens/luiz.png" alt="Luiz Felipe - Fundador" class="about-img-element">
-                    
                     <div class="about-tag">
                         <h4>Luiz Felipe</h4>
                         <span>Fundador & Estrategista</span>
@@ -465,112 +473,13 @@
             </div>
         </section>
 
-    <!--    <section id="investimento" class="pricing container">
-            <div class="section-header">
-                <span class="badge">Sua Presença Digital</span>
-                <h2>Escolha seu próximo <span class="gradient-text">nível de conexão.</span></h2>
-                <p>Soluções de curadoria visual para quem busca o extraordinário.</p>
-            </div>
-
-            <div class="grid-pricing" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
-                
-                <div class="price-card featured">
-                    <div class="price-content">
-                        <span class="pop-tag">🔥 Oportunidade Única</span>
-                        <h3>Plano Maratona</h3>
-                        <p>Sua tranquilidade garantida: <strong>6 meses de Instagram com curadoria total, sem preocupações.</strong></p>
-                        <div class="value">
-                            <div style="font-size: 0.95rem; color: #736B66; margin-bottom: 5px; opacity: 0.8;">De <del>R$ 2.800,00/mês</del> por:</div>
-                            <span class="currency">R$</span>
-                            <span class="amount">2.380</span>
-                            <span class="period">,00 /mês<br>
-                            <span class="discount-note">Equivalente mensal diluído no <br>pagamento à vista do semestre</span></span>
-                        </div>
-                        <ul class="price-list">
-                            <li><strong>6 Meses de Gestão e Curadoria</strong></li>
-                            <li>Tudo do Plano Premium</li>
-                            <li>A produção do semestre em 5 dias</li>
-                            <li><strong>1 Dia em Estúdio Profissional</strong></li>
-                        </ul>
-                    </div>
-                    <a href="https://wa.me/5548996109220?text=Olá, quero garantir minha Presença Digital com o Plano Maratona."
-                        target="_blank" class="btn-main full">Garantir Minha Presença</a>
-                </div>
-
-                <div class="price-card">
-                    <div class="price-content">
-                        <h3>Plano Start</h3>
-                        <p>Um dia de captação presencial com olhar apurado e equipamento de ponta.</p>
-                        <div class="value">
-                            <span class="currency">R$</span>
-                            <span class="amount">970</span>
-                            <span class="period">,00</span>
-                        </div>
-                        <ul class="price-list">
-                            <li>Captação Presencial</li>
-                            <li><strong>Olhar Estratégia Digital</strong></li>
-                            <li>Câmera Sony & Drone</li>
-                            <li>Horário Acordado</li>
-                        </ul>
-                    </div>
-                    <a href="https://wa.me/5548996109220?text=Olá, gostaria de solicitar o Plano Start de captação."
-                        target="_blank" class="btn-outline full">Solicitar Olhar Start</a>
-                </div>
-
-                <div class="price-card">
-                    <div class="price-content">
-                        <h3>Plano Pro</h3>
-                        <p>Curadoria mensal com edição estratégica para manter sua consistência e beleza online.</p>
-                        <div class="value">
-                            <span class="currency">R$</span>
-                            <span class="amount">1.940</span>
-                            <span class="period">,00 /mês</span>
-                        </div>
-                        <ul class="price-list">
-                            <li>Acompanhamento Mensal</li>
-                            <li><strong>Edição de 12 Vídeos de Arte</strong></li>
-                            <li>Sony ZV-E10 + Drone FPV</li>
-                            <li>Edição com Cuidado</li>
-                        </ul>
-                    </div>
-                    <a href="https://wa.me/5548996109220?text=Olá, tenho interesse no Plano Pro de acompanhamento mensal."
-                        target="_blank" class="btn-outline full">Escolher Plano Pro</a>
-                </div>
-
-                <div class="price-card">
-                    <div class="price-content">
-                        <span class="pop-tag" style="background: rgba(230, 215, 210, 0.2); color: var(--accent);">Tranquilidade Total</span>
-                        <h3>Plano Premium</h3>
-                        <p>Gestão completa da sua imagem. Cuidamos de tudo, do planejamento à postagem.</p>
-                        <div class="value">
-                            <span class="currency">R$</span>
-                            <span class="amount">2.800</span>
-                            <span class="period">,00 /mês</span>
-                        </div>
-                        <ul class="price-list">
-                            <li>Captação, Edição e Postagem</li>
-                            <li><strong>Narrativas e Copys que Conectam</strong></li>
-                            <li>Planejamento Estético</li>
-                            <li>Organização de Conteúdo</li>
-                        </ul>
-                    </div>
-                    <a href="https://wa.me/5548996109220?text=Olá, quero delegar minha gestão de conteúdo com o Plano Premium."
-                        target="_blank" class="btn-outline full">Quero Tranquilidade</a>
-                </div>
-
-            </div>
-        </section> -->
-
         <section class="cta-final">
-            <div class="container" >
+            <div class="container">
                 <div class="cta-content">
-                        
                     <h2>Vamos juntos elevar a sua presença digital <br><span class="gradient-text">ao nível extraordinário?</span></h2>
                     <p>Seletiva aberta para novos projetos sensíveis em Florianópolis e região. Transforme sua comunicação em um ativo de desejo.</p>
-
                     <div class="cta-actions">
-                        <a href="https://wa.me/5548996109220?text=Olá, gostaria de marcar uma conversa para conhecer a Estratégia Digital."
-                            target="_blank" class="btn-main large">
+                        <a href="https://wa.me/5548996109220?text=Olá, gostaria de marcar uma conversa para conhecer a Estratégia Digital." target="_blank" class="btn-main large">
                             <span class="btn-text">Agendar Conversa</span>
                             <span class="btn-subtext">Conversar via WhatsApp</span>
                         </a>
